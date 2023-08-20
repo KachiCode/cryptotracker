@@ -20,12 +20,12 @@ function App() {
   console.log("Hello")
   return (
     <>
-      <div className='flex bg-zinc-800  w-screen h-screen text-lg text-dimWhite '>
+      <div className='flex bg-zinc-800  w-screen h-screen text-xl font-bold  text-dimWhite  '>
                 <div className=' flex flex-col  ml-5 mt-5 grow bg-cmpgrey'  >{
           Object.keys(jsonData15)
             .sort((a, b) => jsonData15[b]["volume"] - jsonData15[a]["volume"]) // Sort keys by descending volume
             .map((keyName, i) => (
-              <div className='flex mb-4' key={keyName}>
+              <div className='flex mb-4 ' key={keyName}>
                 {i + 1} {jsonData15[keyName]["name"]} {jsonData15[keyName]["symbol"]} {jsonData15[keyName]["date_added"].slice(0, 10)} {jsonData15[keyName]["volume_converted"]}
               </div>
             ))
