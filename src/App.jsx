@@ -20,12 +20,12 @@ function App() {
   console.log("Hello")
   return (
     <>
-      <div className='flex bg-zinc-800  w-screen h-screen text-xl font-bold  text-dimWhite  '>
-                <div className=' flex flex-col  ml-5 mt-5 grow bg-cmpgrey'  >{
+      <div className='flex bg-zinc-800  w-screen h-screen text-2xl font-bold  text-dimWhite   '>
+                <div className=' flex flex-col  ml-2 mt-5 grow bg-cmpgrey border-2 border-rose-500 '  >{
           Object.keys(jsonData15)
             .sort((a, b) => jsonData15[b]["volume"] - jsonData15[a]["volume"]) // Sort keys by descending volume
             .map((keyName, i) => (
-              <div className='flex mb-4 ' key={keyName}>
+              <div className= {`flex mb-4 ml-1 ${jsonData15[keyName]["hot"] === 'yes' ? "border-4 border-green-500" : ""}`}  key={keyName}>
                 {i + 1} {jsonData15[keyName]["name"]} {jsonData15[keyName]["symbol"]} {jsonData15[keyName]["date_added"].slice(0, 10)} {jsonData15[keyName]["volume_converted"]}
               </div>
             ))
@@ -36,11 +36,11 @@ function App() {
         
         
         
-        <div className=' flex flex-col  ml-5 mt-5 grow bg-cmpgrey'  >{
+        <div className=' flex flex-col  ml-3 mt-5 grow bg-cmpgrey border-2 border-rose-500'  >{
               Object.keys(jsonData400)
                 .sort((a, b) => jsonData400[b]["volume"] - jsonData400[a]["volume"]) // Sort keys by descending volume
                 .map((keyName, i) => (
-                  <div className='flex mb-4' key={keyName}>
+                  <div className={`flex mb-4 ml-1 ${jsonData400[keyName]["hot"] === 'yes' ? "border-4 border-green-500" : ""}`} key={keyName}>
                     {i + 1} {jsonData400[keyName]["name"]} {jsonData400[keyName]["symbol"]} {jsonData400[keyName]["date_added"].slice(0, 10)} {jsonData400[keyName]["volume_converted"]}
                   </div>
                 ))
