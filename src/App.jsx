@@ -37,7 +37,7 @@ function App() {
     fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/timestamp.json')
       .then((response) => response.json())
       .then((data) => setTimestamp(data));
-    }, 5000); // 7200 seconds = 2 hours
+    }, 7200000); // 7200 seconds = 2 hours
 
     // Clear the interval when the component is unmounted
     return () => {
