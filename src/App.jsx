@@ -8,6 +8,7 @@ function App() {
   const [jsonData400, setJsonData400] = useState([]);
   const [timestamp, setTimestamp] = useState([]);
   useEffect(() => {
+    
     fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/15days.json')
       .then((response) => response.json())
       .then((data) => setJsonData15(data));
@@ -16,15 +17,38 @@ function App() {
       .then((response) => response.json())
       .then((data) => setJsonData400(data));
 
-      fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/timestamp.json')
+    fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/timestamp.json')
       .then((response) => response.json())
       .then((data) => setTimestamp(data));
-      
-  }, []); // Empty dependency array ensures the effect runs only once on component mount
+
+    // Reload the website every 2 hours (7200 seconds)
+    const reloadInterval = setInterval(() => {
+
+      console.log("Hello")
+
+      fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/15days.json')
+      .then((response) => response.json())
+      .then((data) => setJsonData15(data));
+
+    fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/400days.json')
+      .then((response) => response.json())
+      .then((data) => setJsonData400(data));
+
+    fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/timestamp.json')
+      .then((response) => response.json())
+      .then((data) => setTimestamp(data));
+    }, 5000); // 7200 seconds = 2 hours
+
+    // Clear the interval when the component is unmounted
+    return () => {
+      clearInterval(reloadInterval);
+    };
+  }, []);
+
   
   
 
-  console.log("Hello")
+  
   return (
     <>
       <div className='flex bg-zinc-800  w-screen h-screen text-2xl font-bold  text-dimWhite   '>
