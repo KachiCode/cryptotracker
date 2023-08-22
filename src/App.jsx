@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [jsonData15, setJsonData15] = useState([]);
   const [jsonData400, setJsonData400] = useState([]);
-
+  const [timestamp, setTimestamp] = useState([]);
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/15days.json')
       .then((response) => response.json())
@@ -15,8 +15,15 @@ function App() {
     fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/400days.json')
       .then((response) => response.json())
       .then((data) => setJsonData400(data));
+
+      fetch('https://raw.githubusercontent.com/KachiCode/cryptotrackerdata/main/timestamp.json')
+      .then((response) => response.json())
+      .then((data) => setTimestamp(data));
+      
   }, []); // Empty dependency array ensures the effect runs only once on component mount
   
+  
+
   console.log("Hello")
   return (
     <>
@@ -30,6 +37,7 @@ function App() {
               </div>
             ))
                 }
+            <div className='flex justify-center text-4xl text-green-500 mt-3'> {timestamp["timestamp"]} </div>
         </div>
         
         
