@@ -56,7 +56,7 @@ function App() {
                     Object.keys(jsonData15)
                       .sort((a, b) => jsonData15[b]["volume"] - jsonData15[a]["volume"]) // Sort keys by descending volume
                       .map((keyName, i) => (
-                        <div className= {`flex  mb-3 ml-1 ${jsonData15[keyName]["hot"] === 'yes' ? "border-4 border-green-500" : ""}`}  key={keyName}>
+                        <div className= {`flex   mb-3 ml-1 ${(jsonData15[keyName]["price_change"] >= 1.1 && jsonData15[keyName]["price_change"] < 1.2)  ? "bg-red-600" : ""} ${(jsonData15[keyName]["price_change"] >= 1.2 && jsonData15[keyName]["price_change"] < 1.3)  ? "bg-yellow-500" : ""} ${(jsonData15[keyName]["price_change"] > 1.3 )  ? "bg-green-500" : ""} ${jsonData15[keyName]["hot"] === 'yes' ? "border-4 border-blue-600" : ""}`}  key={keyName}>
                           {i + 1} {jsonData15[keyName]["name"]} {jsonData15[keyName]["symbol"]} {jsonData15[keyName]["date_added"].slice(0, 10)} {jsonData15[keyName]["volume_converted"]}
                 </div>
             ))
@@ -72,7 +72,7 @@ function App() {
               Object.keys(jsonData400)
                 .sort((a, b) => jsonData400[b]["volume"] - jsonData400[a]["volume"]) // Sort keys by descending volume
                 .map((keyName, i) => (
-                  <div className={`flex  mb-3 ml-1 ${jsonData400[keyName]["hot"] === 'yes' ? "border-4 border-green-500" : ""}`} key={keyName}>
+                  <div className={`flex  mb-3 ml-1  ${(jsonData400[keyName]["price_change"] >= 1.1 && jsonData400[keyName]["price_change"] < 1.2)  ? "bg-red-600" : ""} ${(jsonData400[keyName]["price_change"] >= 1.2 && jsonData400[keyName]["price_change"] < 1.3)  ? "bg-yellow-500" : ""} ${(jsonData400[keyName]["price_change"] > 1.3 )  ? "bg-green-500" : ""} ${jsonData400[keyName]["hot"] === 'yes' ? "border-4  border-blue-600" : ""}`} key={keyName}>
                     {i + 1} {jsonData400[keyName]["name"]} {jsonData400[keyName]["symbol"]} {jsonData400[keyName]["date_added"].slice(0, 10)} {jsonData400[keyName]["volume_converted"]}
                   </div>
                 ))
